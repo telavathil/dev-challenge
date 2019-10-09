@@ -18,6 +18,8 @@
     "@babel/preset-env": "7.2.3",
     "@babel/preset-react": "7.0.0",
     "@babel/register": "7.0.0",
+    "husky": "^3.0.8",
+    "lint-staged": "^9.4.2",
     "nodemon": "1.18.9",
     "prettier": "1.15.3"
   },
@@ -36,5 +38,21 @@
     "start": "nodemon $NODE_DEBUG_OPTION -e js,graphql --watch src --exec babel-node index.js",
     "build:server": "babel src -d build --copy-files",
     "serve": "node build/index.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.{js,jsx}": [
+        "prettier --write",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "**/build/*.js"
+    ]
   }
 }
