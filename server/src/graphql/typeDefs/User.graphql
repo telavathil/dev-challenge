@@ -13,4 +13,5 @@ type User {
   color: Color
   address: Address
   friends: [User!]
+  company: Company
 }
