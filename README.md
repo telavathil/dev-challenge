@@ -27,6 +27,8 @@ Startup the graphql server.
 
 # mobile
 Contains a react-native project that consumes our GraphQL api, it needs some work.
+Follow instructions found here for setting up react-native in your enviornment 
+https://facebook.github.io/react-native/docs/getting-started.html
 
 Install the required packages.
 
@@ -38,5 +40,5 @@ Start up the app.
 
 or 
 
-```react-native start-android```
+```react-native run-android```
 
