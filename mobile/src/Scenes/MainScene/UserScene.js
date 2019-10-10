@@ -1,5 +1,36 @@
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
+import { gql } from 'apollo-boost';
+import { Query } from 'react-apollo';
+import { ErrorScene, UserDetails } from '../../components';
+
+const query = gql`
+  query User($id: ID!) {
+    user(id: $id) {
+      id
+      color
+      name
+      email
+      image
+      address {
+        zipCode
+        city
+        cityPrefix
+        citySuffix
+        streetName
+        streetAddress
+        streetSuffix
+        streetPrefix
+        secondaryAddress
+        county
+        country
+        state
+        latitude
+        longitude
+      }
+    }
+  }
+`;
 
 export default class UserScene extends PureComponent {
   render() {
@@ -15,7 +46,19 @@ export default class UserScene extends PureComponent {
     // todo: 5 would be cool to make the user name and email updateable and saved ot the database, so we can let our users change their info.
     return (
       <View>
-        <Text>{id}</Text>
+        <Query query={query} variables={{ id: id }}>
+          {({ loading, error, data }) => {
+            if (loading) {
+              return <ActivityIndicator />;
+            }
+
+            if (error) {
+              return <ErrorScene message={error.message} />;
+            }
+
+            return <UserDetails user={data.user} />;
+          }}
+        </Query>
       </View>
     );
   }
