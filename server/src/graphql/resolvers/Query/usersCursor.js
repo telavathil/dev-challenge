@@ -1,9 +1,5 @@
-import fs from 'fs';
-import util from 'util';
-import { getUser, uuidBase62 } from '../../../helpers';
+import { uuidBase62, getAllUsers } from '../../../helpers';
 import validator from 'validator';
-
-const readDir = util.promisify(fs.readdir);
 
 export default async function usersCursor(
   root,
@@ -12,15 +8,7 @@ export default async function usersCursor(
   info
 ) {
   if (first < 0) throw new Error("First can't be negative.");
-
-  //todo: DRY
-  const files = await readDir('./data/users');
-  const users = await Promise.all(
-    files
-      .filter(filename => filename.includes('.json'))
-      .map(filename => getUser(filename.replace('.json', '')))
-  );
-
+  const users = await getAllUsers();
   const totalCount = users.length;
   let usersPage = [];
   let start = 0;

@@ -1,18 +1,9 @@
-import fs from 'fs';
-import util from 'util';
 import _ from 'lodash';
-import { getUser } from '../../helpers';
-
-const readDir = util.promisify(fs.readdir);
+import { getAllUsers, getUser } from '../../helpers';
 
 let employeesByCompany = {};
 (async () => {
-  const files = await readDir('./data/users');
-  const employees = await Promise.all(
-    files
-      .filter(filename => filename.includes('.json'))
-      .map(filename => getUser(filename.replace('.json', '')))
-  );
+  const employees = await getAllUsers();
   employeesByCompany = _.groupBy(
     employees.map(item => _.pick(item, ['id', 'company'])),
     'company'
