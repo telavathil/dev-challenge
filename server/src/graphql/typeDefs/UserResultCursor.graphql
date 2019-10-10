@@ -1,0 +1,5 @@
+type UsersResultCursor {
+  edges: [Edge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
