@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-export default memo(({ user }) => (
+export default memo(({ user, navigation }) => (
   <View style={styles.container}>
     <View style={[styles.imageWrapper, { borderColor: user.color }]}>
       <Image style={styles.image} source={{ uri: user.image }} />
@@ -20,12 +20,62 @@ export default memo(({ user }) => (
       <Text style={styles.Name}>{user.name}</Text>
       <Text style={styles.email}>{user.email}</Text>
     </View>
+    <View>
+      <View style={styles.companyList}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('CompanyScene', { id: user.company.id })
+          }
+        >
+          <View
+            style={[
+              styles.companyImageWrapper,
+              { borderColor: user.company.color }
+            ]}
+          >
+            <Image
+              style={styles.companyImage}
+              source={{ uri: user.company.image }}
+            />
+          </View>
+          <View style={styles.companyName}>
+            <Text style={styles.textName}>{user.company.name}</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </View>
   </View>
 ));
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     padding: 20
+  },
+  companyList: {
+    flexDirection: 'row',
+    padding: 20
+  },
+  companyImageWrapper: {
+    marginRight: 20,
+    borderRadius: 40,
+    backgroundColor: 'white',
+    borderWidth: 3,
+    borderColor: 'rgba(0,0,0,0.2)',
+    width: 80,
+    height: 80,
+    overflow: 'hidden'
+  },
+  companyImage: {
+    width: 80,
+    height: 80,
+    resizeMode: 'contain'
+  },
+  companyText: {
+    flexDirection: 'column'
+  },
+  companyName: {
+    fontSize: 24
   },
   imageWrapper: {
     borderWidth: 3,

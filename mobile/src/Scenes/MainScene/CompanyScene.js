@@ -11,6 +11,12 @@ const query = gql`
       color
       name
       image
+      employees {
+        name
+        image
+        id
+        color
+      }
     }
   }
 `;
@@ -34,7 +40,9 @@ export default class CompanyScene extends PureComponent {
               return <ErrorScene message={error.message} />;
             }
 
-            return <CompanyDetails company={data.company} />;
+            return (
+              <CompanyDetails company={data.company} navigation={navigation} />
+            );
           }}
         </Query>
       </View>

@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-export default memo(({ company }) => (
+export default memo(({ company, navigation }) => (
   <View style={styles.container}>
     <View style={[styles.imageWrapper, { borderColor: company.color }]}>
       <Image style={styles.image} source={{ uri: company.image }} />
@@ -18,6 +18,35 @@ export default memo(({ company }) => (
     >
       <Text style={styles.ID}>{company.id}</Text>
       <Text style={styles.Name}>{company.name}</Text>
+      <Text style={styles.Name}>{company.name}</Text>
+    </View>
+    <View style={styles.stack}>
+      <Text>Employees</Text>
+      {company.employees.map((employee, index) => (
+        <TouchableOpacity
+          onPress={() => navigation.navigate('UserScene', { id: employee.id })}
+        >
+          <View
+            style={[styles.container, { flexDirection: 'row' }]}
+            key={index.toString()}
+          >
+            <View
+              style={[
+                styles.employeeImageWrapper,
+                { borderColor: employee.color }
+              ]}
+            >
+              <Image
+                style={styles.employeeImage}
+                source={{ uri: employee.image }}
+              />
+            </View>
+            <View style={styles.employeeText}>
+              <Text style={styles.employeeName}>{employee.name}</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+      ))}
     </View>
   </View>
 ));
@@ -57,5 +86,26 @@ const styles = StyleSheet.create({
     color: '#121212',
     position: 'absolute',
     fontFamily: 'roboto-regular'
+  },
+  employeeImageWrapper: {
+    marginRight: 20,
+    borderRadius: 40,
+    backgroundColor: 'white',
+    borderWidth: 3,
+    borderColor: 'rgba(0,0,0,0.2)',
+    width: 40,
+    height: 40,
+    overflow: 'hidden'
+  },
+  employeeImage: {
+    width: 40,
+    height: 40,
+    resizeMode: 'contain'
+  },
+  employeeText: {
+    flexDirection: 'column'
+  },
+  employeeName: {
+    fontSize: 24
   }
 });

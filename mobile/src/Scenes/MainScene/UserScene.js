@@ -28,6 +28,11 @@ const query = gql`
         latitude
         longitude
       }
+      company {
+        name
+        id
+        image
+      }
     }
   }
 `;
@@ -56,7 +61,7 @@ export default class UserScene extends PureComponent {
               return <ErrorScene message={error.message} />;
             }
 
-            return <UserDetails user={data.user} />;
+            return <UserDetails user={data.user} navigation={navigation} />;
           }}
         </Query>
       </View>
