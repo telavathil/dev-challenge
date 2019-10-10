@@ -8,5 +8,11 @@ export default async function setUser(user) {
   const uuid = validator.isUUID(user.id)
     ? user.id
     : uuidBase62.base62ToUuid(user.id);
-  return writeFile(`./data/users/${uuid}.json`, JSON.stringify(user));
+  return writeFile(
+    `./data/users/${uuid}.json`,
+    JSON.stringify({
+      ...user,
+      id: uuid
+    })
+  );
 }

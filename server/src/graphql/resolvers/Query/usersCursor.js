@@ -14,7 +14,6 @@ export default async function usersCursor(
   let start = 0;
 
   if (after !== undefined) {
-    ///todo: DRY
     const afterUuid = validator.isUUID(after)
       ? uuidBase62.base62ToUuid(after)
       : after;
