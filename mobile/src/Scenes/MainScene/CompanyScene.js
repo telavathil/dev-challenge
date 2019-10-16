@@ -30,7 +30,7 @@ export default class CompanyScene extends PureComponent {
 
     return (
       <View>
-        <Query query={query} variables={{ id: id }}>
+        <Query query={query} variables={{ id }}>
           {({ loading, error, data }) => {
             if (loading) {
               return <ActivityIndicator />;

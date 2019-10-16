@@ -48,7 +48,7 @@ export default class UserScene extends PureComponent {
     // todo: 5 would be cool to make the user name and email updateable and saved ot the database, so we can let our users change their info.
     return (
       <View>
-        <Query query={query} variables={{ id: id }}>
+        <Query query={query} variables={{ id }}>
           {({ loading, error, data }) => {
             if (loading) {
               return <ActivityIndicator />;
