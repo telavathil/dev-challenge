@@ -3,4 +3,3 @@ export UserList from './UserList';
 export UserDetails from './UserDetails';
 export CompanyDetails from './CompanyDetails';
 export CompaniesList from './CompaniesList';
-export Details from './Details';

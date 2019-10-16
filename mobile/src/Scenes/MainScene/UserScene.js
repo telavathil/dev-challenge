@@ -15,22 +15,19 @@ const query = gql`
       address {
         zipCode
         city
-        cityPrefix
-        citySuffix
-        streetName
         streetAddress
-        streetSuffix
-        streetPrefix
-        secondaryAddress
-        county
         country
-        state
-        latitude
-        longitude
       }
       company {
         name
         id
+        image
+      }
+      friends {
+        id
+        color
+        name
+        email
         image
       }
     }
