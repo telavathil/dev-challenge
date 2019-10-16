@@ -1,25 +1,10 @@
 import React, { memo } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import Details from './Details';
 
 export default memo(({ company, navigation }) => (
   <View style={styles.container}>
-    <View style={[styles.imageWrapper, { borderColor: company.color }]}>
-      <Image style={styles.image} source={{ uri: company.image }} />
-    </View>
-    <View
-      style={[
-        styles.stack,
-        {
-          marginTop: 19,
-          height: 111,
-          width: 315
-        }
-      ]}
-    >
-      <Text style={styles.ID}>{company.id}</Text>
-      <Text style={styles.Name}>{company.name}</Text>
-      <Text style={styles.Name}>{company.name}</Text>
-    </View>
+    <Details data={company} />
     <View style={styles.stack}>
       <Text>Employees</Text>
       {company.employees.map((employee, index) => (
