@@ -31,7 +31,7 @@ export default memo(({ data }) => (
     <View style={[styles.stack]}>
       <Text>{data.name}</Text>
       {data.email && <Text>{data.email}</Text>}
-      {data.adress && (
+      {data.address && (
         <Text>
           {data.address.streetAddress}, {data.address.city},{' '}
           {data.address.county}, {data.address.zipCode}
