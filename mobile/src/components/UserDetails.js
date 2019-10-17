@@ -5,7 +5,7 @@ import TouchableList from './TouchableList';
 
 export default memo(({ user, navigation }) => (
   <View style={styles.container}>
-    <Details data={user} />
+    <Details data={user} isUser />
     {user.company && (
       <View>
         <TouchableList
