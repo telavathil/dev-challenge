@@ -1,18 +1,24 @@
 import React, { memo } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  FlatList
+} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    padding: 20,
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    marginTop: 10
   },
   item: {
     flex: 1,
     flexDirection: 'row',
-    padding: 10,
-    justifyContent: 'flex-start',
-    marginBottom: 30
+    padding: 5,
+    justifyContent: 'flex-start'
   },
   ImageWrapper: {
     marginRight: 20,
@@ -38,20 +44,23 @@ const styles = StyleSheet.create({
 export default memo(({ data, navigation, scene, title }) => (
   <View style={styles.container}>
     <Text>{title}</Text>
-    {data.map((item, index) => (
-      <TouchableOpacity
-        onPress={() => navigation.navigate(scene, { id: item.id })}
-        key={index.toString()}
-      >
-        <View style={styles.item}>
-          <View style={[styles.ImageWrapper, { borderColor: item.color }]}>
-            <Image style={styles.Image} source={{ uri: item.image }} />
+    <FlatList
+      data={data}
+      renderItem={({ item }) => (
+        <TouchableOpacity
+          onPress={() => navigation.navigate(scene, { id: item.id })}
+        >
+          <View style={styles.item}>
+            <View style={[styles.ImageWrapper, { borderColor: item.color }]}>
+              <Image style={styles.Image} source={{ uri: item.image }} />
+            </View>
+            <View style={styles.Name}>
+              <Text style={styles.textName}>{item.name}</Text>
+            </View>
           </View>
-          <View style={styles.Name}>
-            <Text style={styles.textName}>{item.name}</Text>
-          </View>
-        </View>
-      </TouchableOpacity>
-    ))}
+        </TouchableOpacity>
+      )}
+      keyExtractor={(item, index) => index.toString()}
+    />
   </View>
 ));
