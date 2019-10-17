@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   textName: {
-    fontSize: 24
+    fontSize: 16
   }
 });
 

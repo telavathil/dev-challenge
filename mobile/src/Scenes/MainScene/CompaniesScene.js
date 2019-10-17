@@ -9,7 +9,7 @@ import {
 import { gql } from 'apollo-boost';
 import { Query } from 'react-apollo';
 
-import { ErrorScene, CompaniesList } from '../../components';
+import { ErrorScene, CompanyList } from '../../components';
 
 const styles = StyleSheet.create({
   container: {
@@ -53,7 +53,7 @@ export default class CompaniesScene extends PureComponent {
                       navigation.navigate('CompanyScene', { id: item.id })
                     }
                   >
-                    <CompaniesList company={item} />
+                    <CompanyList company={item} />
                   </TouchableOpacity>
                 )}
                 keyExtractor={(item, index) => index.toString()}
